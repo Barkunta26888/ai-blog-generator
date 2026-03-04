@@ -6,3 +6,4 @@ requests
 pypdf
 fpdf
 gunicorn
+groq
