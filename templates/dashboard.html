@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Transform company knowledge into high-quality blogs instantly using RAG, LLM, and Generative AI.">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav>
+        <h2>AI Blog Generator</h2>
+
+
+        <ul>
+            <li onclick="showSection('home')">Home</li>
+            <li onclick="showSection('about')">About</li>
+            <li onclick="showSection('blog')">Blog Generator</li>
+            <div class="user-profile">
+
+            </div>
+            <li onclick="logout()" class="logout">Logout</li>
+        </ul>
+    </nav>
+
+    <section id="home" class="section active">
+        <h1>Welcome to AI Blogging ✨</h1>
+        <p style="margin-top:10px; max-width:800px; color:#dbefff; text-align: center;
+">Our system uses Retrieval-Augmented Generation
+            (RAG), Large Language Models (LLMs), and Generative AI to
+            automatically generate brand-consistent blogs in seconds — saving time, reducing errors, and improving
+            content quality.</p>
+
+        <!-- ============================= -->
+        <!-- Features & Highlights Section -->
+        <!-- ============================= -->
+        <section id="features" style="padding: 80px 20px; background: #0f1b3a; color: #fff; text-align: center;">
+
+            <!-- Section Title -->
+            <h2 style="font-size: 2.5em; font-weight: bold; margin-bottom: 20px;">
+                Why Choose Our AI Blog Generator?
+            </h2>
+            <p style="font-size: 1.2em; max-width: 800px; margin: 0 auto 50px; line-height: 1.6;">
+                AI-powered, fast, and error-free. We combine cutting-edge technology with brand consistency to create
+                blogs
+                that attract readers and save your time.
+            </p>
+
+            <!-- Feature Cards -->
+            <div class="features" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <div class="feature-card"
+                    style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; width: 280px; transition: transform 0.3s, background 0.3s;">
+                    <h3>⚡ Fast & Efficient</h3>
+                    <p>Generate long-form blogs in under 60 seconds without compromising quality.</p>
+                </div>
+                <div class="feature-card"
+                    style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; width: 280px; transition: transform 0.3s, background 0.3s;">
+                    <h3>🎯 Brand Consistency</h3>
+                    <p>Automatically match your brand tone and voice in every article.</p>
+                </div>
+                <div class="feature-card"
+                    style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; width: 280px; transition: transform 0.3s, background 0.3s;">
+                    <h3>✅ Error-Free Content</h3>
+                    <p>Reduce typos and factual mistakes with AI-assisted content generation.</p>
+                </div>
+                <div class="feature-card"
+                    style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; width: 280px; transition: transform 0.3s, background 0.3s;">
+                    <h3>💡 Innovative Ideas</h3>
+                    <p>Get fresh blog topics and insights tailored to your niche automatically.</p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ============================= -->
+    <!-- JS for Hover Animation -->
+    <!-- ============================= -->
+    <script>
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseover', () => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.background = 'rgba(255,255,255,0.1)';
+            });
+            card.addEventListener('mouseout', () => {
+                card.style.transform = 'translateY(0px)';
+                card.style.background = 'rgba(255,255,255,0.05)';
+            });
+        });
+    </script>
+
+    <!-- Interactive About Project Section -->
+    <section id="about" class="section active"
+        style="position:relative; background-color: #0f172a; padding: 80px 20px; color: white; text-align: center; font-family: 'Arial', sans-serif; overflow:hidden;">
+        <!-- Particle Canvas -->
+        <canvas id="particles" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;"></canvas>
+
+        <h2 style="font-size: 2.5em; margin-bottom: 20px; position:relative; z-index:1;">🚀 About This Project</h2>
+        <p
+            style="max-width: 800px; margin: 0 auto 50px; font-size: 1.1em; line-height: 1.6; position:relative; z-index:1;">
+            Click on each feature to learn more about how this AI-powered blog generator works and why it’s unique! ✨
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; position:relative; z-index:1;">
+            <!-- Card 1 -->
+            <div class="feature-card"
+                onclick="openModal('Knowledge Integration', 'Fetches company documents, FAQs, and market data to improve content accuracy and relevance. Perfect for maintaining up-to-date and factually correct blogs. 📄')">
+                <h3>📚 Knowledge Integration</h3>
+                <div class="emoji">📄</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="feature-card"
+                onclick="openModal('AI Creativity', 'Uses advanced Large Language Models (LLMs) to craft coherent, engaging blogs that reflect your brand’s voice. 📝')">
+                <h3>🤖 AI Creativity</h3>
+                <div class="emoji">📝</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="feature-card"
+                onclick="openModal('Brand Tone', 'Supports Friendly, Professional, or Custom tones to match your brand identity across all content. 🎯')">
+                <h3>🎨 Brand Tone</h3>
+                <div class="emoji">🎯</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="feature-card"
+                onclick="openModal('Speed & Productivity', 'Reduces blog creation from hours to seconds while maintaining high quality, enabling companies to scale effortlessly. ⏱️')">
+                <h3>⚡ Speed & Productivity</h3>
+                <div class="emoji">⏱️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="featureModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+        <div
+            style="background:#1e293b; color:white; padding:30px; border-radius:15px; max-width:500px; text-align:center; position:relative;">
+            <span onclick="closeModal()"
+                style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:1.5em;">&times;</span>
+            <h3 id="modalTitle" style="margin-bottom:15px;"></h3>
+            <p id="modalContent" style="line-height:1.6;"></p>
+        </div>
+    </div>
+
+    <style>
+        .feature-card {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            width: 250px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin-top: 15px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Particle Styles */
+        canvas {
+            display: block;
+        }
+    </style>
+
+    <script>
+        function openModal(title, content) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalContent').innerText = content;
+            document.getElementById('featureModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('featureModal').style.display = 'none';
+        }
+
+        // Simple Particle Animation
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = document.getElementById('about-project-new').offsetHeight;
+            particlesArray = [];
+            for (let i = 0; i < 80; i++) {
+                particlesArray.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 3 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5
+                });
+            }
+        }
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                let p = particlesArray[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                ctx.fill();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        animateParticles();
+    </script>
+
+
+    <!-- ============================= -->
+    <!-- How It Works Section -->
+    <!-- ============================= -->
+    <!-- ================= HOW IT WORKS ================= -->
+    <section id="how-it-works">
+        <div class="container">
+
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">
+                Three simple steps to AI-powered content creation
+            </p>
+
+            <div class="steps-wrapper">
+
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Upload Your Content</h3>
+                    <p>
+                        Share your existing blogs so our AI can learn your unique brand
+                        voice, tone, and writing style.
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Enter Your Topic</h3>
+                    <p>
+                        Provide a topic, customize parameters like word count and
+                        language, and let AI do the rest.
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Review & Export</h3>
+                    <p>
+                        Preview your blog, make edits with AI assistance, and export in
+                        your preferred format.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= CTA SECTION ================= -->
+    <section id="cta-section">
+        <div class="container">
+            <h2 class="section-title">
+                Ready to Transform Your Content Strategy?
+            </h2>
+
+            <p class="section-subtitle">
+                Start creating high-quality, brand-consistent blogs in seconds
+            </p>
+
+            <button class="cta-button" onclick="window.location.href='/blog-generator'">
+                Start Generating Blogs →
+            </button>
+        </div>
+    </section>
+
+
+    </section>
+
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/blogGenerator.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboardUser.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toggle.js') }}"></script>
+
+</body>
+
+</html>

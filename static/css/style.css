@@ -1,0 +1,82 @@
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================= BODY ================= */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #3899b1, #1d4047, #0e3541);
+    color: #ffffff;
+}
+
+/* ================= SPLASH ================= */
+
+.splash {
+    text-align: center;
+    max-width: 900px;
+    padding: 20px;
+}
+
+/* ================= TITLE ================= */
+
+.splash h1 {
+    font-size: 72px;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.splash p {
+    font-size: 22px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+/* ================= BUTTON ================= */
+
+.cta-btn {
+    display: inline-block;
+    padding: 18px 45px;
+    background: linear-gradient(135deg, #1e90ff, #00c6ff);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 12px 30px rgba(0, 198, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(0, 198, 255, 0.7);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .splash h1 {
+        font-size: 42px;
+    }
+
+    .splash p {
+        font-size: 16px;
+    }
+
+    .cta-btn {
+        font-size: 16px;
+        padding: 14px 30px;
+    }
+}

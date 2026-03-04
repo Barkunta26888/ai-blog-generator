@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Blog Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>AI Blog Generator</h1>
+
+        <!-- User Email Display -->
+        <p id="userInfo" style="font-weight:bold; font-size:16px; margin-bottom:20px;"></p>
+
+        <p class="subtitle">Create brand-consistent blogs in seconds</p>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab" onclick="showTab('setup')">Setup</div>
+            <div class="tab" onclick="showTab('preview')">Preview</div>
+            <div class="tab" onclick="showTab('history')">History</div>
+        </div>
+
+        <!-- SETUP TAB -->
+        <div id="setupTab">
+            <div class="card">
+                <h3>Step 1: Company Info</h3>
+                <label>Company Name</label>
+                <input type="text" id="company">
+            </div>
+
+            <div class="card">
+                <h3>Step 2: Generate Blog</h3>
+                <label>Blog Topic</label>
+                <input type="text" id="topic">
+
+                <label>Word Count</label>
+                <input type="number" id="wordCount" value="800">
+
+                <label>Tone</label>
+                <select id="tone">
+                    <option>Professional</option>
+                    <option>Friendly</option>
+                    <option>Technical</option>
+                    <option>Marketing</option>
+                </select>
+
+                <label>Language</label>
+                <select id="language">
+                    <option>English</option>
+                    <option>Hindi</option>
+                </select>
+
+                <div class="center">
+                    <button id="generateBlogBtn">Generate Blog</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREVIEW TAB -->
+        <div id="previewTab" class="hidden">
+            <div class="card">
+                <h3>Blog Preview</h3>
+                <div id="previewContent">No blog generated yet.</div>
+                <br>
+                <button onclick="exportPDF()">Export as PDF</button>
+            </div>
+        </div>
+
+        <!-- HISTORY TAB -->
+        <div id="historyTab" class="hidden">
+            <div class="card">
+                <h3>Blog History</h3>
+                <div id="historyList">No history yet.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/blogGenerator.js') }}"></script>
+
+    <!-- ===== Show Logged-in User Email ===== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const email = localStorage.getItem("user_email");
+            if (email) {
+                document.getElementById("userInfo").innerText = `Logged in as: ${email}`;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

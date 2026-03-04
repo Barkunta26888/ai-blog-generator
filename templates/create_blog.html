@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Create Blog</h2>
+    <input id="topic" placeholder="Blog Topic">
+    <button onclick="generate()">Generate</button>
+
+    <h3 id="title"></h3>
+    <p id="content"></p>
+
+    <button onclick="save()">Save Blog</button>
+
+    <script>
+        let blog = {};
+
+        function generate() {
+            fetch("http://127.0.0.1:5000/generate-blog", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ topic: topic.value })
+            })
+                .then(r => r.json())
+                .then(d => {
+                    blog = d;
+                    title.innerText = d.title;
+                    content.innerText = d.content;
+                });
+        }
+
+        function save() {
+            fetch("http://127.0.0.1:5000/save-blog", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    user_id: localStorage.getItem("user_id"),
+                    title: blog.title,
+                    content: blog.content
+                })
+            }).then(() => alert("Saved"));
+        }
+    </script>
+
+</body>
+
+</html>

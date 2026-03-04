@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+
+    <style>
+        section {
+            padding: 20px;
+            color: #fff;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4A90E2;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h2>AI Blog Generator</h2>
+        <ul>
+            <li onclick="window.location.href='dashboard.html'">Dashboard</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </nav>
+
+    <section>
+        <h1>User Profile</h1>
+
+        <p id="profileName"></p>
+        <p id="profileEmail"></p>
+
+        <label for="newPassword">Set/Change Password:</label>
+        <input type="password" id="newPassword" placeholder="Enter new password" />
+        <button onclick="updatePassword()">Update Password</button>
+        <p id="updateMessage" style="margin-top:10px;"></p>
+    </section>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            localStorage.removeItem("userPassword");
+            window.location.href = "index.html";
+        }
+
+        window.onload = function () {
+            let email = localStorage.getItem("loggedInUser") || "N/A";
+            let password = localStorage.getItem("userPassword") || "";
+
+            // Extract first part of email as Name
+            let name = "N/A";
+            if (email !== "N/A") {
+                name = email.split("@")[0];
+                name = name.charAt(0).toUpperCase() + name.slice(1);
+            }
+
+            document.getElementById("profileName").innerText = "Name: " + name;
+            document.getElementById("profileEmail").innerText = "Email: " + email;
+
+            // If a password exists in localStorage, pre-fill the field (optional)
+            if (password) {
+                document.getElementById("newPassword").value = password;
+            }
+        }
+
+        function updatePassword() {
+            const newPass = document.getElementById("newPassword").value;
+            if (newPass.length < 4) {
+                document.getElementById("updateMessage").innerText = "⚠️ Password too short!";
+                return;
+            }
+            // Save to localStorage
+            localStorage.setItem("userPassword", newPass);
+            document.getElementById("updateMessage").innerText = "✅ Password updated successfully!";
+        }
+    </script>
+</body>
+
+</html>

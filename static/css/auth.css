@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(135deg, #3899b1, #1d4047, #0e3541);
+}
+
+/* ✅ Fix alignment issue */
+* {
+    box-sizing: border-box;
+}
+
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    width: 350px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 1s ease;
+}
+
+/* ✅ Inputs perfectly equal width */
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* ✅ Button perfectly equal width */
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.auth-box button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 198, 255, 0.4);
+}
+
+.auth-box p {
+    cursor: pointer;
+    color: #aadfff;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+/* Animation */
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .auth-box {
+        width: 90%;
+    }
+}
+
+/* ✅ Professional Message Display */
+.msg {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Error Message Style */
+.error {
+    color: #ff6b6b;
+}
+
+/* Success Message Style */
+.success {
+    color: lightgreen;
+}
+
+.switch-auth {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.switch-auth a {
+    color: #4da3ff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.switch-auth a:hover {
+    text-decoration: underline;
+}
