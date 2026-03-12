@@ -615,3 +615,50 @@ button:hover {
     overflow-y: auto;
     /* scroll if long */
 }
+
+.simple-footer {
+    text-align: center;
+    padding: 20px;
+    color: #ccc;
+    margin-top: 80px;
+}
+
+.contact-link {
+    color: #00bfff;
+    cursor: pointer;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+/* popup */
+
+.contact-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+}
